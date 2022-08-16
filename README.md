@@ -1,5 +1,5 @@
 # HuiHui
-Second Project
+Second Project 사내인트라넷
 Spring Mvc 프로젝트 구축
 DBMS - MySQL 
 

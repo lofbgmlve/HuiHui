@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.huihui.intranet.mapper.CalendarUserMapper">
+
+	
+	
+	<!--  id 별로 전체 받기  -->
+    <select id="calendarUserEventList" resultMap="calendarUserResultMap" resultType="CalendarUser">
+      SELECT * FROM calendar_user WHERE id=#{id};
+    </select>
+	
+	
+	
+	
+	<insert id="addCalendarUserEvent" parameterType="CalendarUser">
+		INSERT INTO calendar_user (id, title, description, StartDate, EndDate, TextColor, backgroundColor) 
+		VALUES (#{id}, #{title}, #{description}, #{start}, #{end},#{textColor}, #{backgroundColor})
+	</insert>
+	
+	<update id="updateCalendarUserEvent" parameterType="CalendarUser">
+		UPDATE calendar_user SET 
+		 title=#{title}, description=#{description}, StartDate=#{start} , EndDate = #{end}, 
+		 TextColor = #{textColor}, backgroundColor=#{backgroundColor}
+		 WHERE no =#{no}
+		
+	</update>
+	
+	<delete id="deleteCalendarUserEvent" >
+		DELETE FROM calendar_user  WHERE no = #{no}
+	</delete>
+	
+	
+
+	
+	<resultMap id="calendarUserResultMap" type="CalendarUser">
+		<id property="no" column="no"/>
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="description" column="Description"/>
+		<result property="start" column="StartDate"/>
+		<result property="end" column="EndDate"/>
+		<result property="textColor" column="TextColor"/>
+		<result property="backgroundColor" column="backgroundColor"/>
+		
+		
+	</resultMap>
+</mapper>
+
+
+

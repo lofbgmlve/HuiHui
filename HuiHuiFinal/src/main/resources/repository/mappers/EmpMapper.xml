@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huihuiproject.mapper.EmpMapper" >
+	
+	<!-- 회원 id에 해당하는 회원 정보를 반환하는 맵핑구문 -->
+	<select id="login" resultType="Emp">
+		SELECT pass FROM emptable WHERE employee_id = #{employeeId}
+	</select>
+	
+	<select id="getEmp" resultType="Emp">
+		SELECT * FROM emptable WHERE employee_id = #{employeeId}
+	</select>
+	
+	<!-- 회원 정보를 추가하는 맵핑구문 -->
+	<insert id="addEmp" parameterType="Emp">
+		INSERT INTO emptable
+		VALUES(#{employeeId}, #{eName}, #{pass}, #{dName},
+				#{deptNo}, #{position}, #{address1}, #{address2}, #{telNo})
+	</insert>
+	
+	<!-- 회원 테이블에서 id에 해당하는 비밀번호를 가져오는 맵핑 구문 -->
+	<select id="emptyPassCheck" resultType="String">
+		SELECT 
+			pass
+		FROM emptable
+		WHERE employee_id = #{employeeId}
+	</select>
+	
+	<!-- 회원 정보를 수정하는 맵핑 구문  -->
+	<update id="updateEmp" parameterType="Emp">
+		UPDATE emptable 
+			SET employee_id=#{employeeId}, ename=#{eName}, pass=#{pass},		 
+				d_name=#{dName}, deptno=#{deptNo}, position=#{position}, 
+				address1=#{address1}, address2=#{address2}, #{telNo}
+		WHERE employee_id=#{employeeId}
+	</update>
+
+</mapper>	
+
+
+

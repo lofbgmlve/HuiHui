@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huihui.intranet.dao.CommuteMapper">
+	<!-- 회원번호로 insert시 출근시간과 퇴근시간이 insert된다.  -->
+	<insert id="insertEmpId" parameterType="String">
+		INSERT INTO commute (employee_id, attend, able) VALUES (#{employeeId}, SYSDATE(), 1);
+	</insert>
+	
+	<!-- 당일 날짜와 회원번호 able을 기준을 출근 확인한다. -->
+	<select id="checkattend" parameterType="String" resultType="Commute">
+		SELECT * FROM commute WHERE date(attend) = date(now()) and employee_id = #{employeeId} and able = 1;
+	</select>
+	
+	<!-- 퇴근시간을 현재시간으로 update -->
+	<update id="updateleaved" parameterType="Commute">
+		update commute set leaved=now() where commuteNo = #{commuteNo};
+	</update>
+	
+	<!-- 년월을 기준으로 검색 -->
+	<select id="attendMonth" parameterType="DateData" resultType="Commute">
+		SELECT * FROM commute WHERE year(attend) = #{toYear} and month(attend) = #{toMonth} and employee_id = #{employeeId} and able = 1;
+	</select>
+	
+	<!-- 출근일을 검색 -->
+	<select id="attendDay" parameterType="DateData" resultType="Commute">
+		SELECT * FROM commute WHERE date(attend) = #{toDay} and employee_id = #{employeeId} and able = 1;
+	</select>
+	<select id="attendList" resultType="Commute" resultMap="attendResultMap">
+		SELECT * FROM commute;
+	</select>
+	
+	<resultMap id="attendResultMap" type="Commute">
+		<id property="commuteNo" column="commuteNo" />
+		<result property="employeeId" column="employee_id" />
+		<result property="attend" column="attend" />
+		<result property="leaved" column="leaved" />
+		<result property="vacation" column="vacation" />
+		<result property="able" column="able" />
+	</resultMap>
+</mapper>

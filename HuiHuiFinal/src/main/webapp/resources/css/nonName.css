@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+.nonNameList{
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+	margin-left : 400px;
+	margin-top : -600px;
+	width : 950px;
+}
+
+#nonNameTitleU{
+	width:700px;
+	border: 1px solid white;
+	height : 50px;
+	font-size : 30px;
+}
+
+.nonNameListTh{
+	border-bottom : 1px solid gray;
+	text-align : center;
+	height : 20px;
+}
+.nonNameListTd{
+	height : 30px;
+}
+.nonNameNo{
+	width : 10px;
+}
+#nonNameTitle{
+	width:650;
+	border: 1px solid white;
+	height : 50px;
+	font-size : 30px;
+}
+#nonNameContent{
+	width : 700px;
+	height : 500px;
+	border: 1px solid white;
+}
+.nonUpdateTitleTd{
+	height : 100px;
+	border : 2px solid #E6E6FA;
+}
+.nonDetail{
+	margin : 0 auto;
+	margin-top : -660px;
+	border-radius : 10px;
+	width : 700px;
+}
+.1234{
+	border : 1px solid gray;
+	width : 700px;
+}
+.nonTitle{
+	font-size : 30px;
+}
+.nonSubTitle{
+	height : 70px;
+}
+.nonSubTitle, .nonContent{
+	border-bottom : 3px solid #E6E6FA;
+}
+.nonContent{
+	margin : 1px auto;
+	width : 50px;
+	height : 100px;
+}
+.nonNameGood{
+	margin : 0px auto;
+	margin-left : 40px;
+}
+#nonNameThank{
+	margin-left : 220px;
+}
+.nonNameBad{
+	width : 320px;
+}
+.nonNameWrite{
+	text-align : right;
+	font-size : 12px;
+}
+.nonUpdateDetail{
+	margin : 0 auto;
+	margin-top : -660px;
+	border : 2px solid #E6E6FA;
+	width : 700px;
+	
+}
+.contentTextBox{
+	height : 550px;
+	border : 2px solid #E6E6FA;
+}
+.contentTextBoxTh{
+	width : 50px;	
+	text-align : center;
+}
+.nonNameBoardTitle{
+	text-align: center;
+	width : 100px;
+}
+.listPage{
+	height : 30px;
+	text-align : center;
+}
+.recommend-on {
+	opacity: 0.7;
+}
+#nonDetailListButton{
+	
+	width : 100px;
+	height : 30px;
+}
+#nonDetailContent{
+	height : 400px;
+}
+.nonDetailTd{
+	width : 40px;
+	text-align : right;
+}
+#searchForm{
+	margin-left : 180px;
+}
+.searchFormTd{
+	height : 50px;
+	background-color :#F5F5F5;
+}
+#keyword{
+	width : 450px;
+}
+.nonNameTdcenter{
+	text-align : center;
+	height : 20px;
+}
+.nonNameTd{
+	height : 20px;
+}
+.nonNameListCenterTd{
+	text-align : center;
+}
+#btn_nonUpdate{
+	margin : 0px auto;
+	margin-right: 200px;
+	width: 100px;
+	display:inline;
+}
+#nonDetailBtnUpdate{
+	margin-left : 270px;
+}
+#nonDetailBtnList{
+	margin-left : 600px;
+}
+#nonNameUpdateButton1{
+	width : 100px;
+}
+.nonNameUpdateBtn{
+	margin-left : 250px;
+}
+
+.ButtonW{
+	
+	padding-left:300px;
+}

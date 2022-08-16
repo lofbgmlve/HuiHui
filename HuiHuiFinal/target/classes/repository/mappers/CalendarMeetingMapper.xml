@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huihui.intranet.mapper.CalendarMeetingMapper">
+
+	
+	<select id="calendarmeetingEventList" resultType="CalendarMeeting" resultMap="calendarmeetingResultMap">
+		SELECT 
+			* 
+		FROM calendarmeeting		
+	</select>
+	
+	
+	
+	<insert id="addCalendarMeetingEvent" parameterType="CalendarMeeting">
+		INSERT INTO calendarmeeting(id, title, description, StartDate, EndDate, TextColor, backgroundColor)
+		VALUES(#{id}, #{title}, #{description}, #{start}, #{end}, #{textColor}, #{backgroundColor})
+	</insert>	
+	
+	<update id="updateCalendarMeetingEvent" parameterType="CalendarMeeting">
+		UPDATE calendarmeeting SET title=#{title}, description=#{description}, 
+				StartDate=#{start}, EndDate=#{end}, TextColor=#{textColor}, backgroundColor=#{backgroundColor}
+		WHERE no=#{no}
+	</update>
+	
+	<delete id="deleteCalendarMeetingEvent">
+		DELETE FROM calendarmeeting WHERE no=#{no}
+	</delete>
+	
+	
+	
+	<resultMap id="calendarmeetingResultMap" type="CalendarMeeting">
+		<id property="no" column="no"/>
+		<result property="id" column="id"/>		
+		<result property="title" column="title"/>
+		<result property="description" column="Description"/>
+		<result property="start" column="StartDate"/>
+		<result property="end" column="EndDate"/>		
+		<result property="textColor" column="TextColor"/>
+		<result property="backgroundColor" column="backgroundColor"/>
+		
+	</resultMap>
+</mapper>
+
+
+

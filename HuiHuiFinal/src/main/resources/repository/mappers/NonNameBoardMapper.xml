@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.huihui.intranet.mapper.NonNameBoardMapper" >
+	<select id="nonNameBoardList" resultType="NonNameBoard" resultMap="nonNameBoardResultMap">
+		SELECT 
+			nonName_no, emp_id, nonName_title, nonName_content, nonName_date,
+			nonName_read_count, nonName_file, nonName_thank, nonName_bad
+		FROM nonNameBoard 
+		<where>
+			<if test="type == 'nonName_title'">
+				nonName_title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'nonName_content'">
+				nonName_content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+		ORDER BY nonName_no DESC
+		LIMIT #{startRow}, #{num}
+	</select>
+	
+	<select id="getNonName" resultType="NonNameBoard" resultMap="nonNameBoardResultMap">
+		SELECT * FROM nonNameBoard WHERE nonName_no = #{nonNameNo}
+	</select>
+	
+	<insert id="insertNonName" parameterType="NonNameBoard" useGeneratedKeys="true" keyProperty="no">
+		INSERT INTO nonNameBoard (emp_id,nonName_title,nonName_content,nonName_date,nonName_read_count,nonName_file) 
+			VALUES(#{empId}, #{nonNameTitle}, #{nonNameContent}, SYSDATE(), 
+			#{nonNameReadCount}, #{nonNameFile});
+	</insert>
+	
+	<select id="getNonNameCount" resultType="int">
+		SELECT COUNT(nonName_no) FROM nonNameBoard
+		<where>
+			<if test="type == 'nonName_title'">
+				nonName_title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="type == 'nonName_content'">
+				nonName_content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="isIdCheck" resultType="String">
+		select emp_id from nonNameBoard where nonName_no = #{nonNameNo}
+	</select>
+	
+	<update id="incrementReadCount">
+		UPDATE nonNameBoard SET nonName_read_count = nonName_read_count + 1
+		WHERE nonName_no = #{nonNameNo}
+	</update>
+	
+	<update id="incrementeRecommend">
+		UPDATE nonNameBoard SET 
+		<if test="nonRecommend == 'nonNameThank' and addAndCancle == 'add'">
+			nonName_thank = nonName_thank + 1
+		</if>
+		<if test="nonRecommend == 'nonNameThank' and addAndCancle == 'cancle'">
+			nonName_thank = nonName_thank - 1
+		</if>
+		<if test="nonRecommend == 'nonNameBad' and addAndCancle == 'add'">
+			nonName_bad = nonName_bad + 1
+		</if>
+		<if test="nonRecommend == 'nonNameBad' and addAndCancle == 'cancle'">
+			nonName_bad = nonName_bad - 1
+		</if>
+		WHERE nonName_no = #{nonNameNo}
+	</update>
+	
+	<select id="getThank" resultType="NonNameBoard" resultMap="nonNameBoardResultMap">
+		select nonName_thank, nonName_bad from nonNameBoard where nonName_no = #{nonNameNo}
+	</select>
+	
+	<update id="nonNameUpdate" parameterType="map">
+		update nonNameBoard set 
+			nonName_title = #{nonNameTitle}, nonName_content = #{nonNameContent}, 
+			nonName_date = SYSDATE()
+		where nonName_no = #{nonNameNo}
+	</update>
+	
+	<delete id="nonNameDelete">
+		delete from nonNameBoard
+		where nonName_no = #{nonNameNo}
+	</delete>
+	
+	<resultMap id="nonNameBoardResultMap" type="NonNameBoard">
+		<id property="nonNameNo" column="nonName_no"/>
+		<result property="empId" column="emp_id"/>
+		<result property="nonNameTitle" column="nonName_title"/>
+		<result property="nonNameContent" column="nonName_content"/>
+		<result property="nonNameDate" column="nonName_date"/>
+		<result property="nonNameReadCount" column="nonName_read_count"/>
+		<result property="nonNameFile" column="nonName_file"/>
+		<result property="nonNameThank" column="nonName_thank"/>
+		<result property="nonNameBad" column="nonName_bad"/>
+	</resultMap>
+	
+</mapper>	
+
+
+
